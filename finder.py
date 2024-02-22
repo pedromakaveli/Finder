@@ -22,6 +22,10 @@ class Objeto:
         print(Fore.WHITE + f"\n[!] PASTA ATUAL: {self.currentPath}")
         sleep(1)
         
+        print("-" * 40)
+        self.startSearch()
+        print("-" * 40)
+        
         filesQtd = len(self.filesPath)
         findSucess = Fore.GREEN + str(filesQtd)
         findEmpty = Fore.RED + str(filesQtd)
