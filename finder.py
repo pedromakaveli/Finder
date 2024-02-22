@@ -18,5 +18,14 @@ class Main:
     print("SELECIONE O TIPO DOS ARQUIVOS QUE VOCE DESEJA VERIFICAR")
 
     extension_choice = int(input("\n[1] .pdf [2] .docx"))
+
+    # -----------------------------------------
+    #[!] Very important: this variables was be alter after the menu verification
+
+    obj = Objeto()
+
+    # [!] Very important: this variables was be alter after the menu verification
+    #------------------------------------------
+    
     
 main = Main()
