@@ -41,3 +41,4 @@ class Main:
             print("Opção inválida, tente novamente")
             
 main = Main()
+main.menuVerify(main.extension_choice)
