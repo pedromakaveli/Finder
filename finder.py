@@ -23,7 +23,8 @@ class Objeto:
         sleep(1)
         
     def startSearch(self):
-        ...
+        for file in os.listdir(self.currentPath):
+            ...
 
 
 class Main:
