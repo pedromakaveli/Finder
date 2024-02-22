@@ -26,6 +26,8 @@ class Main:
 
     # [!] Very important: this variables was be alter after the menu verification
     #------------------------------------------
-    
+
+    def menuVerify(self, numberChoice):
+        ...
     
 main = Main()
