@@ -13,6 +13,11 @@ class Objeto:
     #-----------------------------------------------------------------------------
 
 class Main:
-    ...
+    print("Github > @pedro.makaveli\n")
+    print("A finalidade do Finder e buscar por arquivos especificos e oferecendo uma busca filtrada por nomes de arquivos\n\n")
+    print("SELECIONE O TIPO DOS ARQUIVOS QUE VOCE DESEJA VERIFICAR")
+
+    extension_choice = int(input("\n[1] .pdf [2] .docx"))
+
     
 main = Main()
