@@ -18,6 +18,5 @@ class Main:
     print("SELECIONE O TIPO DOS ARQUIVOS QUE VOCE DESEJA VERIFICAR")
 
     extension_choice = int(input("\n[1] .pdf [2] .docx"))
-
     
 main = Main()
