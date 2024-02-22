@@ -11,6 +11,9 @@ class Objeto:
     currentPath = os.getcwd()
     filesPath = []
     #-----------------------------------------------------------------------------
+    
+    def insertExtension(self, extension):
+        ...
 
 class Main:
     print("Github > @pedro.makaveli\n")
