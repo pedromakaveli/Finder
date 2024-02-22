@@ -12,7 +12,7 @@ class Objeto:
     filesPath = []
     #-----------------------------------------------------------------------------
 
-# Here we find the main menu
-
 class Main:
     ...
+    
+main = Main()
