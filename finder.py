@@ -15,6 +15,13 @@ class Objeto:
     def insertExtension(self, extension):
         os.system("cls")
         self.currentExtension = extension.lower()
+        
+        print(f"\n[!] EXTENSAO SELECIONADA:" + Fore.GREEN + f"{self.currentExtension}\n")
+        sleep(1)
+
+        print(Fore.WHITE + f"\n[!] PASTA ATUAL: {self.currentPath}")
+        sleep(1)
+
 
 class Main:
     print("Github > @pedro.makaveli\n")
