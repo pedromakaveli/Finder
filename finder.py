@@ -21,6 +21,9 @@ class Objeto:
 
         print(Fore.WHITE + f"\n[!] PASTA ATUAL: {self.currentPath}")
         sleep(1)
+        
+    def startSearch(self):
+        ...
 
 
 class Main:
