@@ -31,6 +31,13 @@ class Main:
     #------------------------------------------
 
     def menuVerify(self, numberChoice):
-        ...
-    
+        if numberChoice == 1:
+            self.obj.insertExtension('.pdf') # This line alter selectedExtension variable on Objeto scope  
+
+        elif numberChoice == 2:
+            self.obj.insertExtension('.docx')
+            
+        else:
+            print("Opção inválida, tente novamente")
+            
 main = Main()
