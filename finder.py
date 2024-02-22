@@ -44,6 +44,20 @@ class Objeto:
 
 
 class Main:
+    print(Fore.RED + """
+  █████▒██▓ ███▄    █ ▓█████▄ ▓█████  ██▀███  
+▓██   ▒▓██▒ ██ ▀█   █ ▒██▀ ██▌▓█   ▀ ▓██ ▒ ██▒
+▒████ ░▒██▒▓██  ▀█ ██▒░██   █▌▒███   ▓██ ░▄█ ▒
+░▓█▒  ░░██░▓██▒  ▐▌██▒░▓█▄   ▌▒▓█  ▄ ▒██▀▀█▄  
+░▒█░   ░██░▒██░   ▓██░░▒████▓ ░▒████▒░██▓ ▒██▒
+ ▒ ░   ░▓  ░ ▒░   ▒ ▒  ▒▒▓  ▒ ░░ ▒░ ░░ ▒▓ ░▒▓░
+ ░      ▒ ░░ ░░   ░ ▒░ ░ ▒  ▒  ░ ░  ░  ░▒ ░ ▒░
+ ░ ░    ▒ ░   ░   ░ ░  ░ ░  ░    ░     ░░   ░ 
+        ░           ░    ░       ░  ░   ░     
+                       ░                      
+    """ + Fore.WHITE
+    )
+    
     print("Github > @pedro.makaveli\n")
     print("A finalidade do Finder e buscar por arquivos especificos e oferecendo uma busca filtrada por nomes de arquivos\n\n")
     print("SELECIONE O TIPO DOS ARQUIVOS QUE VOCE DESEJA VERIFICAR")
