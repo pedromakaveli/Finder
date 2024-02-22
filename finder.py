@@ -18,9 +18,15 @@ class Objeto:
         
         print(f"\n[!] EXTENSAO SELECIONADA:" + Fore.GREEN + f"{self.currentExtension}\n")
         sleep(1)
-
+    
         print(Fore.WHITE + f"\n[!] PASTA ATUAL: {self.currentPath}")
         sleep(1)
+        
+        filesQtd = len(self.filesPath)
+        findSucess = Fore.GREEN + str(filesQtd)
+        findEmpty = Fore.RED + str(filesQtd)
+        
+        
         
     def startSearch(self):
         for file in os.listdir(self.currentPath):
