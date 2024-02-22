@@ -24,7 +24,9 @@ class Objeto:
         
     def startSearch(self):
         for file in os.listdir(self.currentPath):
-            ...
+            if file.endswith(self.currentExtension):
+                print(f'\nArquivo {self.currentExtension} encontrado: {file}\n')
+                self.filesPath.append(file)
 
 
 class Main:
