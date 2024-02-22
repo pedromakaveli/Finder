@@ -26,6 +26,10 @@ class Objeto:
         findSucess = Fore.GREEN + str(filesQtd)
         findEmpty = Fore.RED + str(filesQtd)
         
+        if filesQtd > 0:
+            print(f"\n{findSucess}" + Fore.WHITE + " Arquivos no formato" + Fore.GREEN + f" {self.currentExtension} " +  Fore.WHITE + "foram encontrados!\n")  
+        else:
+            print(f"\n{findEmpty}" + Fore.WHITE + " Arquivos no formato" + Fore.GREEN + f" {self.currentExtension} " +  Fore.WHITE + "foram encontrados!\n")  
         
         
     def startSearch(self):
