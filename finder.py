@@ -13,7 +13,8 @@ class Objeto:
     #-----------------------------------------------------------------------------
     
     def insertExtension(self, extension):
-        ...
+        os.system("cls")
+        self.currentExtension = extension.lower()
 
 class Main:
     print("Github > @pedro.makaveli\n")
