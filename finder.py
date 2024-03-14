@@ -1,86 +1,75 @@
 import os
-from colorama import init, Fore, Back, Style
-from time import sleep
 
-init()
-
-class Objeto:
-    #-----------------------------------------------------------------------------
-    # This variables are passed by a instance locate on the end of this code
+class Finder:
+    filesName = []
+    personalExtensions = []
     currentExtension = ''
-    currentPath = os.getcwd()
-    filesPath = []
-    #-----------------------------------------------------------------------------
-    
-    def insertExtension(self, extension):
-        os.system("cls")
-        self.currentExtension = extension.lower()
-        
-        print(f"\n[!] EXTENSAO SELECIONADA:" + Fore.GREEN + f"{self.currentExtension}\n")
-        sleep(1)
-    
-        print(Fore.WHITE + f"\n[!] PASTA ATUAL: {self.currentPath}")
-        sleep(1)
-        
-        print("-" * 40)
-        self.startSearch()
-        print("-" * 40)
-        
-        filesQtd = len(self.filesPath)
-        findSucess = Fore.GREEN + str(filesQtd)
-        findEmpty = Fore.RED + str(filesQtd)
-        
-        if filesQtd > 0:
-            print(f"\n{findSucess}" + Fore.WHITE + " Arquivos no formato" + Fore.GREEN + f" {self.currentExtension} " +  Fore.WHITE + "foram encontrados!\n")  
-        else:
-            print(f"\n{findEmpty}" + Fore.WHITE + " Arquivos no formato" + Fore.GREEN + f" {self.currentExtension} " +  Fore.WHITE + "foram encontrados!\n")  
-        
-        
-    def startSearch(self):
+    currentPath = None
+
+    def __init__(self, filesList=None, extensionsList=None, putExtension=None, path=None):
+
+        if filesList is not None:
+            self.filesName = filesList
+
+        if extensionsList is not None:
+            self.personalExtensions = extensionsList
+
+        if putExtension is not None:
+            self.currentExtension = putExtension
+
+        if path is not None:
+            self.path = path
+
+    def findExtensions_onPath(self):
+
+        try:
+            if len(self.filesName) < 1:
+                raise ValueError('The files passed is empty')
+
+            if len(self.personalExtensions) < 1:
+                raise ValueError('The extensions passed is empty')
+
+            if len(self.currentExtension) < 1:
+                raise ValueError('The extension passed is empty')
+
+            if len(self.currentPath) < 1:
+                raise ValueError('The path passed is empty')
+
+        except ValueError as err:
+            print(err)
+
         for file in os.listdir(self.currentPath):
-            if file.endswith(self.currentExtension):
-                print(f'\nArquivo {self.currentExtension} encontrado: {file}\n')
-                self.filesPath.append(file)
+            for selectedExtension in self.personalExtensions:
+                if file.endswith(selectedExtension):
+                    print(f'{file}')
 
+    def findExtensions_withWordlist(self):
 
-class Main:
-    print(Fore.RED + """
-  █████▒██▓ ███▄    █ ▓█████▄ ▓█████  ██▀███  
-▓██   ▒▓██▒ ██ ▀█   █ ▒██▀ ██▌▓█   ▀ ▓██ ▒ ██▒
-▒████ ░▒██▒▓██  ▀█ ██▒░██   █▌▒███   ▓██ ░▄█ ▒
-░▓█▒  ░░██░▓██▒  ▐▌██▒░▓█▄   ▌▒▓█  ▄ ▒██▀▀█▄  
-░▒█░   ░██░▒██░   ▓██░░▒████▓ ░▒████▒░██▓ ▒██▒
- ▒ ░   ░▓  ░ ▒░   ▒ ▒  ▒▒▓  ▒ ░░ ▒░ ░░ ▒▓ ░▒▓░
- ░      ▒ ░░ ░░   ░ ▒░ ░ ▒  ▒  ░ ░  ░  ░▒ ░ ▒░
- ░ ░    ▒ ░   ░   ░ ░  ░ ░  ░    ░     ░░   ░ 
-        ░           ░    ░       ░  ░   ░     
-                       ░                      
-    """ + Fore.WHITE
-    )
-    
-    print("Github > @pedro.makaveli\n")
-    print("A finalidade do Finder e buscar por arquivos especificos e oferecendo uma busca filtrada por nomes de arquivos\n\n")
-    print("SELECIONE O TIPO DOS ARQUIVOS QUE VOCE DESEJA VERIFICAR")
+        try:
+            if len(self.filesName) < 1:
+                raise ValueError('The files passed is empty')
 
-    extension_choice = int(input("\n[1] .pdf [2] .docx"))
+            if len(self.personalExtensions) < 1:
+                raise ValueError('The extensions passed is empty')
 
-    # -----------------------------------------
-    #[!] Very important: this variables was be alter after the menu verification
+            if len(self.currentExtension) < 1:
+                raise ValueError('The extension passed is empty')
 
-    obj = Objeto()
+            if len(self.currentPath) < 1:
+                raise ValueError('The path passed is empty')
 
-    # [!] Very important: this variables was be alter after the menu verification
-    #------------------------------------------
+        except ValueError as err:
+            print(err)
 
-    def menuVerify(self, numberChoice):
-        if numberChoice == 1:
-            self.obj.insertExtension('.pdf') # This line alter selectedExtension variable on Objeto scope  
+        for file in os.listdir(self.currentPath):
+            for selectedExtension in self.personalExtensions:
+                for fileName in self.filesName:
+                    fileName_withExtension = str(fileName) + str(selectedExtension)
+                    if fileName_withExtension == file:
+                        print(f'File with extension {selectedExtension} found: {fileName_withExtension}')
 
-        elif numberChoice == 2:
-            self.obj.insertExtension('.docx')
-            
-        else:
-            print("Opção inválida, tente novamente")
-            
-main = Main()
-main.menuVerify(main.extension_choice)
+if __name__ == '__main__':
+    directory = os.getcwd()
+    fd = Finder(extensionsList=['.pdf', '.docx'], path=directory, filesList=['pedro', 'joao'])
+    fd.findExtensions_withWordlist()
+    fd.findExtensions_onPath()
