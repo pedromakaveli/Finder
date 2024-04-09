@@ -44,6 +44,17 @@ class Finder:
                     print(f'{file}')
 
     def findExtensions_withWordlist(self):
+        '''
+        Finder start a verification and run the search
+
+        self.filesName: Passed by the user. This is about the files names what you want find on your current path
+        self.personalCurrentExtensions: Passed by the user. This is about what file extensions do you want find on your current path
+        self.currentExtension: Passed by the user. This is about what file extension do you want find on your current path
+        self.currentPath: Your current directory
+
+        This variables is passed on the constructor function
+        
+        '''
 
         try:
             if len(self.filesName) < 1:
