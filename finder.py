@@ -1,86 +1,74 @@
 import os
+import argparse
 
 class Finder:
-    filesName = []
-    personalExtensions = []
-    currentExtension = ''
-    currentPath = None
 
-    def __init__(self, filesList=None, extensionsList=None, putExtension=None, path=None):
+    def __init__(self, fileNames=None, personalExtensions=None, currentPath=None):
 
-        if filesList is not None:
-            self.filesName = filesList
-
-        if extensionsList is not None:
-            self.personalExtensions = extensionsList
-
-        if putExtension is not None:
-            self.currentExtension = putExtension
-
-        if path is not None:
-            self.path = path
+        self.fileNames = fileNames
+        self.personalExtensions = personalExtensions
+        self.currentPath = currentPath
 
     def findExtensions_onPath(self):
 
-        try:
-            if len(self.filesName) < 1:
-                raise ValueError('The files passed is empty')
+        if len(self.personalExtensions) < 1:
+            raise ValueError('The extensions passed is empty')
 
-            if len(self.personalExtensions) < 1:
-                raise ValueError('The extensions passed is empty')
+        if len(self.currentPath) < 1:
+            raise ValueError('The path passed is empty')
 
-            if len(self.currentExtension) < 1:
-                raise ValueError('The extension passed is empty')
-
-            if len(self.currentPath) < 1:
-                raise ValueError('The path passed is empty')
-
-        except ValueError as err:
-            print(err)
+        filesFound = []
 
         for file in os.listdir(self.currentPath):
             for selectedExtension in self.personalExtensions:
                 if file.endswith(selectedExtension):
-                    print(f'{file}')
+                    filesFound.append(os.path.abspath(file))
+
+        return filesFound
+
 
     def findExtensions_withWordlist(self):
-        '''
-        Finder start a verification and run the search
+        if len(self.fileNames) == 0 and len(self.personalExtensions) == 0:
+            raise ValueError('Please inform a list of files or extensions!')
 
-        self.filesName: Passed by the user. This is about the files names what you want find on your current path
-        self.personalCurrentExtensions: Passed by the user. This is about what file extensions do you want find on your current path
-        self.currentExtension: Passed by the user. This is about what file extension do you want find on your current path
-        self.currentPath: Your current directory
+        if len(self.personalExtensions) == 0:
+            raise ValueError('The extensions passed is empty')
 
-        This variables is passed on the constructor function
-        
-        '''
+        if len(self.currentPath) == 0:
+            raise ValueError('The path passed is empty')
 
-        try:
-            if len(self.filesName) < 1:
-                raise ValueError('The files passed is empty')
-
-            if len(self.personalExtensions) < 1:
-                raise ValueError('The extensions passed is empty')
-
-            if len(self.currentExtension) < 1:
-                raise ValueError('The extension passed is empty')
-
-            if len(self.currentPath) < 1:
-                raise ValueError('The path passed is empty')
-
-        except ValueError as err:
-            print(err)
+        filesFound = []
 
         for file in os.listdir(self.currentPath):
             for selectedExtension in self.personalExtensions:
-                for fileName in self.filesName:
-                    fileName_withExtension = str(fileName) + str(selectedExtension)
+                for fileName in self.fileNames:
+                    fileName_withExtension = f'{fileName}.{selectedExtension}'
+
                     if fileName_withExtension == file:
-                        print(f'File with extension {selectedExtension} found: {fileName_withExtension}')
+                        filesFound.append(os.path.abspath(fileName_withExtension))
+
+        return filesFound
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(prog='Finder', description='Finder is a script for search of files')
+
+    parser.add_argument('-e', '--extensions', nargs='+')
+    parser.add_argument('-f', '--filenames', nargs='+')
+
+    args = parser.parse_args()
+
     directory = os.getcwd()
-    fd = Finder(extensionsList=['.pdf', '.docx'], path=directory, filesList=['pedro', 'joao'])
-    fd.findExtensions_withWordlist()
-    fd.findExtensions_onPath()
+
+    fd = Finder(personalExtensions=args.extensions, currentPath=directory, fileNames=args.filenames)
+
+    if args.extensions is not None:
+        filesFound = fd.findExtensions_onPath()
+
+        for file in filesFound:
+            print(file)
+
+    if args.filenames is not None:
+        filesFound = fd.findExtensions_withWordlist()
+
+        for file in filesFound:
+            print(file)
